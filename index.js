@@ -40,6 +40,6 @@ app.post('/orders', async (req, res) => {
     res.send(dishes)
 })
 
-app.listen(3001, err => {
+app.listen(3002, err => {
     !err ? console.log('Server OK') : err
 })
