@@ -5,7 +5,7 @@ import RestarauntSchema from './models/restaraunts.js';
 import DishesSchema from './models/dishes.js';
 import OrderSchema from './models/orders.js'
 
-mongoose.connect('mongodb+srv://seruy50:Serjio_Valente50@cluster0.9b7eurn.mongodb.net/main?retryWrites=true&w=majority')
+mongoose.connect(`mongodb+srv://${process.env.username}:${proccess.env.password}@cluster0.9b7eurn.mongodb.net/main?retryWrites=true&w=majority`)
 .then(() => console.log('Database OK'))
 .catch(err => console.log(err))
 
