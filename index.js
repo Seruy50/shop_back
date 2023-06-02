@@ -3,8 +3,9 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import RestarauntSchema from './models/restaraunts.js';
 import DishesSchema from './models/dishes.js';
+import OrderSchema from './models/orders.js'
 
-mongoose.connect('mongodb+srv://.9b7eurn.mongodb.net/main?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://seruy50:Serjio_Valente50@cluster0.9b7eurn.mongodb.net/main?retryWrites=true&w=majority')
 .then(() => console.log('Database OK'))
 .catch(err => console.log(err))
 
@@ -20,24 +21,28 @@ app.get('/rests', async (req, res) => {
 })
 
 app.get('/:id', async (req, res) => {
-    console.log(55)
     let id = req.params.id;
-    let some = await DishesSchema.find({shop_id: id});
+    let some = await DishesSchema.find({shop_id: req.params.id});
     
     res.json(some);
 })
 
-app.post('/orders', async (req, res) => {
-    let iDs = await req.body;
-    let dishes = [];
-    console.log(iDs);
-    for(let one of iDs){
-        one = await DishesSchema.findById(one);
-        dishes.push(one)
-    }
-        
-   
-    res.send(dishes)
+app.post('/order', async (req, res) => {
+    let body = await req.body;
+
+    let doc = new OrderSchema({
+        dishes: body.dishes,
+        price: body.totalPrice,
+        user_name: body.user_name,
+        user_email: body.user_email,
+        user_phone: body.user_phone,
+        user_adress: body.user_adress
+    })
+
+    await doc.save();
+
+
+    res.send('Order done');
 })
 
 app.listen(3001, err => {
