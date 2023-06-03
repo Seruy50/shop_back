@@ -4,4 +4,4 @@ let RestarauntSchema = mongoose.Schema({
     name: String
 })
 
-export default mongoose.model('restoraunt', RestarauntSchema) 
+export default mongoose.model('restoraunt', RestarauntSchema);
