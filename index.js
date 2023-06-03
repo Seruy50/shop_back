@@ -20,10 +20,8 @@ app.get('/shops', async (req, res) => {
     res.send(rests)
 })
 
-app.get('/:id', async (req, res) => {
-    let id = req.params.id;
+app.get('/shops/:id', async (req, res) => {
     let some = await DishesSchema.find({shop_id: req.params.id});
-    
     res.json(some);
 })
 
