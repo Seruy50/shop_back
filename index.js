@@ -32,7 +32,7 @@ app.post('/order', async (req, res) => {
 
     let doc = new OrderSchema({
         dishes: body.dishes,
-        price: body.totalPrice,
+        price: body.orderPrice,
         user_name: body.user_name,
         user_email: body.user_email,
         user_phone: body.user_phone,
