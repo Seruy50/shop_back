@@ -26,9 +26,9 @@ app.get('/shops', async (req, res) => {
 
 app.get('/shops/:id', async (req, res) => { 
     try {
-        id = req.params.id;
-        let some = await DishesSchema.find({ shop_id: id });
-        res.json(some);
+        let id = req.params.id;
+        let dishes = await DishesSchema.find({ shop_id: id });
+        res.send(dishes);
     } catch (error) {
         res.status(500).json({ message: 'Can not get dishes from id' })
     }   
@@ -57,6 +57,6 @@ app.post('/order', async (req, res) => {
     
 })
 
-app.listen(3001, err => {
+app.listen(process.env.port, err => {
     !err ? console.log('Server OK') : console.log(err)
 })
