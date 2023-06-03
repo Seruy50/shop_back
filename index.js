@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json())
 app.use(cors());
 
-app.get('/rests', async (req, res) => {
+app.get('/shops', async (req, res) => {
     let rests = await RestarauntSchema.find();
     res.send(rests)
 })
