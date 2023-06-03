@@ -26,8 +26,8 @@ app.get('/shops', async (req, res) => {
 
 app.get('/shops/:id', async (req, res) => { 
     try {
-        shopId = req.params.id;
-        let some = await DishesSchema.find({ shop_id: shopId });
+        id = req.params.id;
+        let some = await DishesSchema.find({ shop_id: id });
         res.json(some);
     } catch (error) {
         res.status(500).json({ message: 'Can not get dishes from id' })
