@@ -7,7 +7,7 @@ let OrderSchema = mongoose.Schema({
         require: true
     },
     price : {
-        type: String,
+        type: Number,
         require: true
     },
     user_name: {
