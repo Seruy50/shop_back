@@ -13,7 +13,7 @@ let OrderSchema = mongoose.Schema({
     user_name: {
         type: String,
         require: true
-    },
+    }, 
     user_email: {
         type: String,
         require: true

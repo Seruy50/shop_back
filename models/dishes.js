@@ -6,4 +6,4 @@ let DishesSchema = mongoose.Schema({
     price: Number,
 })
 
-export default mongoose.model('dish', DishesSchema)
+export default mongoose.model('dish', DishesSchema) 

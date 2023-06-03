@@ -8,7 +8,7 @@ import OrderSchema from './models/orders.js'
 mongoose.connect(`mongodb+srv://${process.env.username}:${process.env.password}@cluster0.9b7eurn.mongodb.net/main?retryWrites=true&w=majority`)
 .then(() => console.log('Database OK'))
 .catch(err => console.log(err))
-
+ 
 
 
 const app = express();
@@ -21,7 +21,7 @@ app.get('/shops', async (req, res) => {
         res.send(rests)
     } catch (error) {
         res.status(500).json({ message: 'Can not get shops' })
-    }     
+    }      
 })
 
 app.get('/shops/:id', async (req, res) => { 
