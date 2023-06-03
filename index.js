@@ -16,34 +16,47 @@ app.use(express.json())
 app.use(cors());
 
 app.get('/shops', async (req, res) => {
-    let rests = await RestarauntSchema.find();
-    res.send(rests)
+    try {
+        let rests = await RestarauntSchema.find();
+        res.send(rests)
+    } catch (error) {
+        res.status(500).json({ message: 'Can not get shops' })
+    }     
 })
 
-app.get('/shops/:id', async (req, res) => {
-    let some = await DishesSchema.find({shop_id: req.params.id});
-    res.json(some);
+app.get('/shops/:id', async (req, res) => { 
+    try {
+        shopId = req.params.id;
+        let some = await DishesSchema.find({ shop_id: shopId });
+        res.json(some);
+    } catch (error) {
+        res.status(500).json({ message: 'Can not get dishes from id' })
+    }   
 })
 
 app.post('/order', async (req, res) => {
-    let body = await req.body;
+    try {
+        let body = req.body;
 
-    let doc = new OrderSchema({
-        dishes: body.dishes,
-        price: body.orderPrice,
-        user_name: body.user_name,
-        user_email: body.user_email,
-        user_phone: body.user_phone,
-        user_adress: body.user_adress
-    })
+        let doc = new OrderSchema({
+            dishes: body.dishes,
+            price: body.orderPrice,
+            user_name: body.user_name,
+            user_email: body.user_email,
+            user_phone: body.user_phone,
+            user_adress: body.user_adress
+         })
 
-    await doc.save();
+        await doc.save();
 
+        res.send('Order done');
+    } catch (error) {
+        res.status(500).json({ message: "Can not create an order" });
+    }
     
-
-    res.send('Order done');
+    
 })
 
 app.listen(3001, err => {
-    !err ? console.log('Server OK') : err
+    !err ? console.log('Server OK') : console.log(err)
 })
